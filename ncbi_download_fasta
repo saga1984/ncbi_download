@@ -28,7 +28,7 @@ ncbi_download(){
   ftp_links_${genero}.txt | sed 's/https/rsync/g' | head -${genum} > download_fna_files_${genero}.sh
   # descargar los genomas
   bash download_fna_files_${genero}.sh
-  # crear carpeta y mover genomas a descargados al nuevo directorio
+  # crear carpeta y mover genomas descargados al nuevo directorio
   mkdir ASSEMBLY_${genero}
   mv GC*.fna.gz ASSEMBLY_${genero}
 
@@ -37,10 +37,10 @@ ncbi_download(){
 # funcion para pbtener estadisticas
 estadisticas(){
 
-  # crear directorio de trabajo
+  # crear directorio de resultados
   mkdir ASSEMBLY_${genero}/Stats
 
-  # volver variable directorio de trabajo
+  # volver variable directorio de resultados
   dir="ASSEMBLY_${genero}/Stats"
 
   # --------------------------------------------------------------------
@@ -60,7 +60,7 @@ estadisticas(){
   # Generar un archivo y poner los nombres de columnas
   echo -e "ID,Contigs,Length,Largest_contig,N50,N90,N_count,Gaps" > ${dir}/estadisticas_ensamble_${genero}.csv
 
-  # ordenar y agrupar estadisticas estadisticas a partir de estadisticas obtenidas por 1er loop
+  # ordenar y agrupar estadisticas a partir de estadisticas obtenidas por 1er loop
   for file in ${dir}/*stats*; do
      # asignar nombre de ensamble (corto)
      fname="$(basename $file | cut -d '-' -f '1')"
@@ -100,7 +100,7 @@ AYUDA="
    e)\tEspecie e interes
 "
 
-# si no hay argumento manda mensaje de error y sal
+# si no hay argumento manda mensaje de ayuda y sal
 if [[ ${#} -eq 0 ]]; then
    echo -e "${AYUDA}"
    exit 1
@@ -117,7 +117,7 @@ while getopts e:h opt; do
         estadisticas
         ;;
       *)
-        echo "La funjcion ${0}, espera al menos un argumento 'especie'"
+        echo "La funcion ${0}, espera al menos un argumento 'especie'"
         echo -e "${AYUDA}"
         ;;
    esac
