@@ -17,7 +17,7 @@ ncbi_download(){
      rsync -tv rsync://ftp.ncbi.nlm.nih.gov/genomes/ASSEMBLY_REPORTS/assembly_summary_refseq.txt ./
   fi
 
-  # filtra aquellos de la especie de interes
+  # filtra aquellos de la especie de interes y devuelve solo nivel de ensamble y ruta de ubicacion
   grep -E "${especie}" assembly_summary_refseq.txt | cut -f "12,20" > ftp_links_${genero}.txt
 
   # da el numero de genomas disponibles totales y por nivel de ensamble
