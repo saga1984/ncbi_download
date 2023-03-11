@@ -22,14 +22,14 @@ ncbi_download(){
 
   # da el numero de genomas disponibles totales y por nivel de ensamble
   echo -e "NCBI tiene un total de:" "'"$(cat ftp_links_${genero}.txt | wc -l)"'" "genomas para la especie '${especie}'"
-  echo $(cat ftp_links_${genero}.txt | grep -c "Contig") "genomas nivel: Contig"
+  echo $(cat ftp_links_${genero}.txt | grep -c "Contig") "genomas nivel: Contig (menor calidad)"
   echo $(cat ftp_links_${genero}.txt | grep -c "Scaffold") "genomas nivel: Scaffold"
   echo $(cat ftp_links_${genero}.txt | grep -c "Chromosome") "genomas nivel: Chromosome"
-  echo $(cat ftp_links_${genero}.txt | grep -c "Complete") "genomas nivel: Complete"
+  echo $(cat ftp_links_${genero}.txt | grep -c "Complete") "genomas nivel: Complete (mayor calidad)"
 
   # recibir input del usuario numero y nivel de ensambles deseados
-  echo -e "\nPor favor elige el nivel de calidad de ensamble que deseas"
-  read -p "Elige entre: Contig (menor calidad), Scaffold, Chromosome o Complete (mayor calidad): " cal
+  echo -e "\nPor favor elige el nivel de completud de ensamble que deseas"
+  read -p "Elige entre: (Contig, Scaffold, Chromosome o Complete): " cal
   echo -e "\nPor favor introduce el numero de genomas que deseas descargar"
   read -p "Numero de Genomas: " genum
 
