@@ -108,7 +108,7 @@ estadisticas(){
 
 # menu de ayuda
 AYUDA="
-   USO: ${0} -e 'Pseudomonas aeruginosa'
+   USO: $(basename ${0}) -e 'Pseudomonas aeruginosa'
 
    h)\tMuestra este menu de ayuda
 
